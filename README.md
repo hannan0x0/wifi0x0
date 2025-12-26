@@ -8,7 +8,7 @@ pkg update && pkg upgrade -y
 pkg install root-repo -y
 pkg install git tsu python wpa-supplicant pixiewps iw -y
 git clone https://github.com/showrovbd/wi-fuck 
-cd wi-fuck 
+cd wifi0x0
 pip3 install -r requirements.txt
 chmod +x wifi0x0.py
 ```
@@ -53,4 +53,5 @@ Repo : <a href="https://github.com/hannan0x0/wifi0x0.git"> Here </a>
 https://github.com/hannan0x0/
 https://facebook.com/hannan0x0/
 </div>
+
 
