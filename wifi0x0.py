@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
-# Modify History : rofl0r => Biri_B@B@ => Mohammad_Alamin (Toxinum)
-# VERSION 1.0.1
+# Modify History : rofl0r => bunny0x0 =>> MD. Abdul Hannan Mir
+# VERSION 1.0.2
 # Open Source Code.No Need More Modification.
 import sys, subprocess, os, tempfile, shutil, re, codecs, socket, pathlib, time, collections, statistics, collections, csv, http.client, marshal
 from time import sleep 
@@ -1003,7 +1003,7 @@ class WiFiScanner:
               ':.       /_____\\      ,:'                                  
                        /       \\               
 
-    Tools : WiFi/Hacking & Networking                                                              
+         Tools : Wifi-Hacking & Networking                                                              
     ------------------------------------------------------
      ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗ 
      ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
@@ -1014,7 +1014,7 @@ class WiFiScanner:
 
     ━━━━━━━━━━━━━━━━━━#############━━━━━━━━━━━━━━━━━━
               
-                  \n\t\t[\033[1;32m*\033[1;37m] Modified by : Nishan \n\t\t[\033[1;32m*\033[1;37m] Version     : 7.0.0 \n\t\t[\033[1;32m*\033[1;37m] Telegram    : @bunny00_x  \n''')
+                  \n\t\t[\033[1;32m*\033[1;37m] Modified by : Nishan \n\t\t[\033[1;32m*\033[1;37m] Version     : 7.0.0 \n\t\t[\033[1;32m*\033[1;37m] Telegram    : @bunny0x0  \n''')
         networks = self.iw_scanner()
         if not networks:
             ani('[\033[1;31m-\033[1;37m] No WPS networks found!')
